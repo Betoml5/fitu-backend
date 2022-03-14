@@ -7,7 +7,7 @@ const User = new Schema({
   lastName: { type: String, required: true },
   age: { type: Number, required: true },
   height: { type: Number, required: true },
-  roles: { type: String, required: true },
+  role: { type: String, required: true },
   sizes: {
     leg: { type: Number, default: 0 },
     arm: { type: Number, default: 0 },
