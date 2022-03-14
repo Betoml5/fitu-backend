@@ -43,13 +43,13 @@ const controller = {
       }
 
       const checkUser = await User.findOne({
-        controlNumber: user.controlNumber,
+        email: user.email,
       });
       if (checkUser) {
         return responseHTTP.error(
           req,
           res,
-          { message: "Este numero de control ya existe" },
+          { message: "Este email ya existe" },
           500
         );
       }
