@@ -18,13 +18,11 @@ const controller = {
 
         req.login(user, { session: false }, async (err) => {
           if (err) next(err);
-
           const payload = { user };
           const token = jwt.sign(
             { id: user._id, roles: [req.user.role] },
             config.authJwtSecret
           );
-
           return responseHTTP.success(req, res, { token, payload }, 200);
         });
       } catch (error) {
