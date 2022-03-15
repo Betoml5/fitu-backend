@@ -1,12 +1,13 @@
 const User = require("../models/User");
 const responseHTTP = require("../network/response");
 const passport = require("passport");
-
+const jwt = require("jsonwebtoken")
+const { config } = require("../config")
 const controller = {
   signIn: async (req, res, next) => {
     passport.authenticate("login", async (err, user, info) => {
       try {
-        if (err | !user)
+        if (err | !user) {
           return responseHTTP.error(
             req,
             res,
@@ -15,6 +16,7 @@ const controller = {
             },
             403
           );
+        }
 
         req.login(user, { session: false }, async (err) => {
           if (err) next(err);
@@ -57,7 +59,6 @@ const controller = {
       const userCreated = await User.create(user);
       return responseHTTP.success(req, res, userCreated, 201);
     } catch (error) {
-      console.log(error);
       return responseHTTP.error(req, res, error, 500);
     }
   },
