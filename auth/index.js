@@ -13,10 +13,8 @@ passport.use(
     { usernameField: "email", passwordField: "password" },
     async (email, password, done) => {
       try {
-        const user = await User.findOne({ email });
-
+        const user = await User.findOne({ email: email });
         if (!user) return done(null, false, { message: "User not found" });
-
         const validate = await bcrypt.compare(password, user.password);
         if (!validate) return done(null, false, { message: "Wrong password" });
         delete user._doc.password;
