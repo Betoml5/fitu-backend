@@ -16,13 +16,23 @@ const controller = {
     try {
       const customers = await User.find({
         firstName: { $regex: ".*" + name + ".*" },
-      });
+      }).select("-password");
 
       return responseHTTP.success(req, res, customers, 200);
     } catch (error) {
       return responseHTTP.error(req, res, error, 500);
     }
   },
+
+  findOne: async () => {
+    const { id } = req.params;
+    try {
+      const customer = await User.findById(id).select("-password").where("role", "user");
+      return responseHTTP.success(req, res, customer, 200)
+    } catch (error) {
+      return responseHTTP.error(req, res, error, 500);
+    }
+  }
 };
 
 module.exports = controller;

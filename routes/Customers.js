@@ -14,5 +14,6 @@ router.get(
   middlewares.verifyRole,
   controller.findByName
 );
+router.get("/customer/:id", middlewares.verifyAuth, middlewares.verifyRole, controller.findOne)
 
 module.exports = router;
