@@ -1,8 +1,8 @@
 const User = require("../models/User");
 const responseHTTP = require("../network/response");
 const passport = require("passport");
-const jwt = require("jsonwebtoken")
-const { config } = require("../config")
+const jwt = require("jsonwebtoken");
+const { config } = require("../config");
 const controller = {
   signIn: async (req, res, next) => {
     passport.authenticate("login", async (err, user, info) => {

@@ -5,10 +5,14 @@ const bcrypt = require("bcrypt");
 const User = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  password: { type: String, required: true },
+  password: {
+    type: String,
+    required: true,
+    default: () => bcrypt.hashSync("fmpassword", SALT_WORK_FACTOR),
+  },
   email: { type: String, required: true },
   phone: { type: String, required: true },
-  role: { type: String, required: true },
+  role: { type: String, required: true, default: "user" },
   age: { type: Number },
   height: { type: Number },
   sizes: {
