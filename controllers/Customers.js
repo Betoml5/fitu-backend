@@ -24,15 +24,17 @@ const controller = {
     }
   },
 
-  findOne: async () => {
+  findOne: async (req, res) => {
     const { id } = req.params;
     try {
-      const customer = await User.findById(id).select("-password").where("role", "user");
-      return responseHTTP.success(req, res, customer, 200)
+      const customer =
+        (await User.findById(id).select("-password").where("role", "user")) ||
+        {};
+      return responseHTTP.success(req, res, customer, 200);
     } catch (error) {
       return responseHTTP.error(req, res, error, 500);
     }
-  }
+  },
 };
 
 module.exports = controller;
