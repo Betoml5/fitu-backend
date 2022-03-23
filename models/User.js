@@ -13,8 +13,8 @@ const User = new Schema({
   email: { type: String, required: true },
   phone: { type: String, required: true },
   role: { type: String, required: true, default: "user" },
-  age: { type: Number },
-  height: { type: Number },
+  age: { type: Number, required: true },
+  height: { type: Number, required: true },
   sizes: {
     leg: { type: Number, default: 0 },
     arm: { type: Number, default: 0 },
