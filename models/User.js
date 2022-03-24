@@ -14,7 +14,8 @@ const User = new Schema({
   phone: { type: String, required: true },
   role: { type: String, required: true, default: "user" },
   age: { type: Number, required: true },
-  height: { type: Number, required: true },
+  height: { type: Number },
+  weight: { type: Number },
   sizes: {
     leg: { type: Number, default: 0 },
     arm: { type: Number, default: 0 },

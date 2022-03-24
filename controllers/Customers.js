@@ -15,7 +15,7 @@ const controller = {
     const { name } = req.query;
     try {
       const customers = await User.find({
-        firstName: { $regex: ".*" + name + ".*" },
+        firstName: { $regex: ".*" + name.toLowerCase() + ".*" },
       }).select("-password");
 
       return responseHTTP.success(req, res, customers, 200);
