@@ -9,7 +9,7 @@ const User = new Schema({
   password: {
     type: String,
     required: true,
-    default: () => bcrypt.hashSync("fmpassword", SALT_WORK_FACTOR),
+    default: () => bcrypt.hashSync(config.defaultPassword, SALT_WORK_FACTOR),
   },
   email: { type: String, lowercase: true, required: true },
   phone: { type: String, required: true },
