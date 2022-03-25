@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const SALT_WORK_FACTOR = 10;
 const bcrypt = require("bcrypt");
+const { config } = require("../config")
 
 const User = new Schema({
   firstName: { type: String, required: true },
