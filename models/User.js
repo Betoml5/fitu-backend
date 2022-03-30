@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const SALT_WORK_FACTOR = 10;
 const bcrypt = require("bcrypt");
-const { config } = require("../config")
+const { config } = require("../config");
 
 const User = new Schema({
   firstName: { type: String, required: true },
@@ -11,7 +11,7 @@ const User = new Schema({
     required: true,
     default: () => bcrypt.hashSync(config.defaultPassword, SALT_WORK_FACTOR),
   },
-  email: { type: String, lowercase: true, required: true },
+  email: { type: String, lowercase: true, unique: true, required: true },
   phone: { type: String, required: true },
   role: { type: String, required: true, default: "user" },
   age: { type: Number, required: true },

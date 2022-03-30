@@ -35,6 +35,17 @@ const controller = {
       return responseHTTP.error(req, res, error, 500);
     }
   },
+  create: async (req, res) => {
+    try {
+      const { user } = req.body;
+      if (!user)
+        return responseHTTP(res, res, { message: "Missing information" }, 500);
+      const newUser = await User.create(user);
+      return responseHTTP(req, res, newUser, 201);
+    } catch (error) {
+      return responseHTTP.error(req, res, error, 500);
+    }
+  },
 };
 
 module.exports = controller;
