@@ -3,6 +3,7 @@ const responseHTTP = require("../network/response");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const { config } = require("../config");
+const capitalize = require("capitalize");
 
 const controller = {
   signIn: async (req, res, next) => {
