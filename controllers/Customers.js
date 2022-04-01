@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const responseHTTP = require("../network/response");
+const capitalize = require("../utils/capitalize");
 
 const controller = {
   find: async (req, res) => {
@@ -40,6 +41,8 @@ const controller = {
       const { user } = req.body;
       if (!user)
         return responseHTTP(res, res, { message: "Missing information" }, 500);
+      user.firstName = capitalize(user.firstName);
+      user.lastName = capitalize(user.lastName);
       const newUser = await User.create(user);
       return responseHTTP(req, res, newUser, 201);
     } catch (error) {
