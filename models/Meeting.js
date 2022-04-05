@@ -5,4 +5,4 @@ const Meeting = new Schema({
   date: { type: Date },
 });
 
-module.exports = new model("Meeting", Meeting);
+module.exports = model("Meeting", Meeting);
