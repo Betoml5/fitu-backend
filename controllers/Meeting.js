@@ -16,7 +16,6 @@ const controller = {
       const newMeeting = await Meeting.create(meeting);
       return responseHTTP.success(req, res, newMeeting, 201);
     } catch (error) {
-      console.log(error);
       return responseHTTP.error(req, res, error, 500);
     }
   },
