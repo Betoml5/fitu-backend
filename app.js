@@ -3,10 +3,11 @@ const app = express();
 const mongoose = require("mongoose");
 const { config } = require("./config");
 const passport = require("passport");
-const cors = require("cors")
+const cors = require("cors");
 const userRoutes = require("./routes/User");
 const authRoutes = require("./routes/Auth");
-const customersRoutes = require("./routes/Customers")
+const customersRoutes = require("./routes/Customers");
+const meetingsRoutes = require("./routes/Meeting");
 
 mongoose
   .connect(
@@ -19,12 +20,13 @@ mongoose
 
 app.use(express.json());
 
-app.use(cors("*"))
+app.use(cors("*"));
 
-require("./auth")
-app.use(passport.initialize())
+require("./auth");
+app.use(passport.initialize());
 app.use("/api/users", userRoutes);
-app.use("/api/customers", customersRoutes)
+app.use("/api/customers", customersRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/meetings", meetingsRoutes);
 
 module.exports = app;
