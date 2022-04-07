@@ -1,6 +1,11 @@
+const { parseISO, format } = require("date-fns");
 const Meeting = require("../models/Meeting");
 const responseHTTP = require("../network/response");
-const datefns = require("date-fns");
+
+// let dates = ["2019-04-07T16:30", "2022-04-07T16:30", "2017-04-07T16:30"];
+// dates = dates.map((date) => parseISO(date));
+
+// console.log(dates.sort(compareDesc));
 
 const controller = {
   create: async (req, res) => {
@@ -8,8 +13,6 @@ const controller = {
     try {
       if (!meeting)
         return responseHTTP.error(req, res, "Missing meeting data", 400);
-
-      console.log(datefns.parseISO(meeting.date).toISOString());
       const newMeeting = await Meeting.create(meeting);
       return responseHTTP.success(req, res, newMeeting, 201);
     } catch (error) {
@@ -54,7 +57,7 @@ const controller = {
   //More methods here
   find: async (req, res) => {
     try {
-      const meetings = await Meeting.find({});
+      const meetings = await Meeting.find({}).populate("user", "-password");
       return responseHTTP.success(req, res, meetings, 200);
     } catch (error) {
       return responseHTTP.error(req, res, error, 500);

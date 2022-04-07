@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const Meeting = new Schema({
-  customer: { type: Schema.Types.ObjectId, ref: "customer", required: true },
+  user: { type: Schema.Types.ObjectId, ref: "User", required: true },
   date: {
-    type: Date,
+    type: String,
     required: true,
   },
 });
